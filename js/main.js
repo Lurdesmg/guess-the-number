@@ -6,7 +6,7 @@ const button = document.querySelector('.js_button');
 const track = document.querySelector('.js_track');
 const tryNumber = document.querySelector('.js_try');
 const randomNumber = getRandomNumber(100);
-const count = 0;
+let count = 0;
 console.log(randomNumber);
 
 // funciones
@@ -32,12 +32,14 @@ function numberThink () {
     else {
         track.value = 'El número debe estar entre 1 y 100.'
     }
-    tryNumber.innerHTML = `El número de intentos es: ${counter + 1}`;
+    counter();
 }
 
 function counter() {
-    const counter = parseInt(count.value);
-    return counter
+    //const counter = parseInt(count.value);
+    count = count + 1;
+    tryNumber.innerHTML = `El número de intentos es: ${count + 1}`;
+    //return counter
 }
 
 
