@@ -1,61 +1,97 @@
 'use strict'
 
-// Variables
-const yourNumber = document.querySelector('.js_number');
-const button = document.querySelector('.js_button');
-const track = document.querySelector('.js_track');
-const tryNumber = document.querySelector('.js_try');
-const randomNumber = getRandomNumber(100);
-let count = 0;
+// DOM
+const inputNumber = document.querySelector('.js_number');
+const inputTryBtn = document.querySelector('.js_button');
+const inputResetBtn = document.querySelector('.js_btnReset');
+const clueElement = document.querySelector('.js_track');
+const tryElement = document.querySelector('.js_try');
+
+// Var solo del js
+// cambiamos de const a let, para que cuando le demos al reset podamos reasignar un nuevo valor. 
+let randomNumber = getRandomNumber(100);
 console.log(randomNumber);
+let counter = 0;
 
 // funciones
 function getRandomNumber(max) {
     return Math.ceil(Math.random() * max);
 }
 
-function number() {
-    const numberChoose = parseInt(yourNumber.value);
+// Esta función nos aseguramos de que no sea string!!
+function convertNumber() {
+    const numberChoose = parseInt(inputNumber.value);
     return numberChoose
 }
 
-function numberThink () {
-    if (number()> randomNumber) {
-        track.value = 'Demasiado alto';
+function checkNumber() {
+    //esta variable la creamos para no estar llamando todo el rato a la función --> de esta manera la llamamos una sola vez y tenemos el resultado de esa llamada en una variable local!!
+    const selectedNumber = convertNumber();
+    if (selectedNumber === '') {
+        writeClue('Esta vacio');
+    } else if (isNaN(selectedNumber)) { // por si en el input hemos puesto type text en vez de number y meten texto!!
+        writeClue('Debe introducir un numero');
     }
-    else if (number()< randomNumber){
-        track.value = 'Demasiado bajo';
+    else if (selectedNumber < 1 || selectedNumber > 100) {
+        writeClue('El numero debe ser entre 1 y 100');
     }
-    else if (number() === randomNumber) {
-        track.value = 'Has ganado campeona!!'
-    }
+    else if (selectedNumber > randomNumber) {
+        writeClue('Es demasiado alto');
+    } 
+    else if (selectedNumber < randomNumber) {
+        writeClue('Es demasiado bajo');
+    } 
     else {
-        track.value = 'El número debe estar entre 1 y 100.'
+        writeClue('¡¡Has ganado!!');
     }
-    counter();
 }
 
-function counter() {
-    //const counter = parseInt(count.value);
-    count = count + 1; // count++; //count+=1
-    tryNumber.innerHTML = `El número de intentos es: ${count + 1}`;
-    //return counter
+// funcion para darle el mensaje en los condicionales y no estar poniendo todo el rato innerHTML!
+function writeClue(msj) {
+    clueElement.innerHTML = msj;
 }
 
+// funcion para incrementar el contador de las veces que intentamos averiguar el Nº
+function incrementCounter() {
+    counter++;
+    tryElement.innerHTML = counter;
+}
 
+// funcion para Resetear el contador.
+function resetCounter() {
+    tryElement.innerHTML = 0;
+    counter = 0;
+}
+
+// funcion del boton prueba
 function handleClick(event) {
     event.preventDefault();
-    numberThink();
-    counter();
+    checkNumber();
+    incrementCounter();
+}
+
+// función para lanzar la prueba pulsando Enter --> event.key === 'Enter' lo vemos con un c.log, mirando las propiedades del evento --> console.log(event); tambien nos valdría --> event.code === 'Enter' || event.keyCode === 13
+function handleKeyUp(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        checkNumber();
+        incrementCounter();
+    }
+}
+
+// función para resetear el juego a cero en todos los campos --> como vendria por defecto!!
+function handleReset(event) {
+    event.preventDefault();
+    inputNumber.value = '';
+    writeClue('Pista: Escribe el número y dale a Prueba');
+    resetCounter();
+    randomNumber = getRandomNumber(100);
+    console.log(randomNumber);
 }
 
 
 // evento
-button.addEventListener('click' , handleClick);
+inputTryBtn.addEventListener('click' , handleClick);
+inputNumber.addEventListener('keyup' , handleKeyUp);
+inputResetBtn.addEventListener('click' , handleReset);
 
-/*
-si el value del input es submit si que hace falta el preventDefault, pero si es button, no haria falta.
-Cambiar:
-al else if demasiado alto hasta 100, ya que el else no lo coge!
-la funcion randon va la primera!
-*/
