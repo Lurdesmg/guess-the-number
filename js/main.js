@@ -10,13 +10,13 @@ let count = 0;
 console.log(randomNumber);
 
 // funciones
+function getRandomNumber(max) {
+    return Math.ceil(Math.random() * max);
+}
+
 function number() {
     const numberChoose = parseInt(yourNumber.value);
     return numberChoose
-}
-
-function getRandomNumber(max) {
-    return Math.ceil(Math.random() * max);
 }
 
 function numberThink () {
@@ -37,7 +37,7 @@ function numberThink () {
 
 function counter() {
     //const counter = parseInt(count.value);
-    count = count + 1;
+    count = count + 1; // count++; //count+=1
     tryNumber.innerHTML = `El número de intentos es: ${count + 1}`;
     //return counter
 }
@@ -52,3 +52,10 @@ function handleClick(event) {
 
 // evento
 button.addEventListener('click' , handleClick);
+
+/*
+si el value del input es submit si que hace falta el preventDefault, pero si es button, no haria falta.
+Cambiar:
+al else if demasiado alto hasta 100, ya que el else no lo coge!
+la funcion randon va la primera!
+*/
