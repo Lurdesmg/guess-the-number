@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Rampart+One&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/main.css" />
     <title>Guess the Number</title>
   </head>
@@ -13,10 +24,12 @@
     </header>
     <main class="main">
       <form class="form" action="#" class="form">
-        <label class="form_title" for="number" name="yourNumber">Intruduce aquí tu numero:</label>
-        <input class="form_inputNumber" type="text" class="js_number" />
-        <input class="form_inputBtn" type="button" value="Prueba" class="js_button" />
-        <input class="form_inputReset" type="reset" class="js_btnReset" value="Reset" />
+        <label class="form_title" for="number" name="yourNumber">Intruduce aquí tu numero: </label>
+        <input class="form_inputNumber js_number" type="text" />
+        <div class="buttons">
+          <input class="form_inputBtn js_button" type="button" value="Prueba" />
+          <input class="form_inputReset js_btnReset" type="reset" value="Reset" />
+        </div>
       </form>
       <p class="js_track main_writeNumber">Pista: Escribe el número y dale a Prueba</p>
       <p class="main_counter">Número de intentos: <span class="js_try main_counterNumber">0</span></p>

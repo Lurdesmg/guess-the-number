@@ -1,0 +1,75 @@
+.body {
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.header {
+  padding: 1rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.title {
+  font-family: 'Rampart One', cursive;
+  font-size: 7rem;
+}
+
+.main {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.form_title {
+  font-size: 3rem;
+  font-family: 'Acme', sans-serif;
+}
+
+.form_inputNumber {
+  border: 0.3rem solid;
+  font-size: 1.5rem;
+  height: 5rem;
+  background-color: transparent;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+.form_inputBtn,
+.form_inputReset {
+  height: 3rem;
+  width: 10rem;
+  font-family: 'Acme', sans-serif;
+  font-size: 2rem;
+  background-color: transparent;
+  box-shadow: 0.5rem 0.3rem 0.5rem black;
+  border: 0.2 solid;
+}
+
+.main_writeNumber {
+  font-size: 2rem;
+  color: #333;
+  font-weight: bold;
+  font-family: 'Acme', sans-serif;
+  margin-top: 2.5rem;
+}
+
+.main_counter,
+.main_counterNumber {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Acme', sans-serif;
+  margin-top: 2.5rem;
+}
